@@ -4,7 +4,7 @@ import HeroImage from "../../assets/Image1.jpg";
 // Hero component - Displays a promotional section with text, image, and statistics
 const Hero = () => {
   return (
-    <div className="relative min-h-[110vh] bg-gradient-to-b from-gray-50 to-white pb-0">
+    <div className="relative min-h-[110vh] bg-gradient-to-b from-gray-50 to-white pb-36">
       {/* Main container with padding and responsive layout */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-28 lg:py-36">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
