@@ -17,7 +17,9 @@ router.post("/signup", async (req, res) => {
     // Check if the username is already in use
     const existingUser = await User.findOne({ username });
     if (existingUser) {
-      return res.status(400).json({ message: "This username is already taken." });
+      return res
+        .status(400)
+        .json({ message: "This username is already taken." });
     }
 
     // Hash the password before saving to the database
@@ -75,7 +77,12 @@ router.post("/login", async (req, res) => {
       if (user.failedLoginAttempts >= 5) {
         user.isActive = false;
         await user.save();
-        return res.status(401).json({ message: "This account has been locked due to multiple failed login attempts." });
+        return res
+          .status(401)
+          .json({
+            message:
+              "This account has been locked due to multiple failed login attempts.",
+          });
       }
 
       await user.save();
@@ -120,7 +127,6 @@ router.post("/login", async (req, res) => {
     delete userWithoutPassword.password;
 
     res.json({ user: userWithoutPassword });
-
   } catch (error) {
     console.error("Login error:", error.message);
     res.status(500).json({ message: "Server error. Please try again later." });
@@ -133,57 +139,81 @@ router.post("/login", async (req, res) => {
  * @access  Private
  */
 router.post("/logout", async (req, res) => {
-    try {
-      const token = req.cookies.token;
-  
-      if (!token) {
-        return res.status(400).json({ message: "User is already logged out." });
-      }
-  
-      try {
-        // Verify and decode the JWT token
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        const user = await User.findById(decoded.userId);
-  
-        if (user) {
-          user.isLoggedIn = false;
-          await user.save();
-        }
-      } catch (error) {
-        console.error("Token verification error:", error.message);
-      }
-  
-      // Clear the authentication token from cookies
-      res.clearCookie("token", {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production", // Ensure security in production
-        sameSite: "strict",
-      });
-  
-      res.json({ message: "Successfully logged out." });
-    } catch (error) {
-      console.error("Logout error:", error.message);
-      res.status(500).json({ message: "Internal server error." });
+  try {
+    const token = req.cookies.token;
+
+    if (!token) {
+      return res.status(400).json({ message: "User is already logged out." });
     }
-  });
-  
-  /**
-   * @route   DELETE /delete/:userId
-   * @desc    Deletes a user by ID
-   * @access  Admin
-   */
-  router.delete("/delete/:userId", async (req, res) => {
+
     try {
-      const user = await User.findByIdAndDelete(req.params.userId);
-      if (!user) {
-        return res.status(404).json({ message: "User not found." });
+      // Verify and decode the JWT token
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const user = await User.findById(decoded.userId);
+
+      if (user) {
+        user.isLoggedIn = false;
+        await user.save();
       }
-  
-      res.json({ message: "User successfully deleted." });
     } catch (error) {
-      console.error("User deletion error:", error.message);
-      res.status(500).json({ message: "Internal server error." });
+      console.error("Token verification error:", error.message);
     }
-  });
-  
+
+    // Clear the authentication token from cookies
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production", // Ensure security in production
+      sameSite: "strict",
+    });
+
+    res.json({ message: "Successfully logged out." });
+  } catch (error) {
+    console.error("Logout error:", error.message);
+    res.status(500).json({ message: "Internal server error." });
+  }
+});
+
+/**
+ * @route   DELETE /delete/:userId
+ * @desc    Deletes a user by ID
+ * @access  Admin
+ */
+router.delete("/delete/:userId", async (req, res) => {
+  try {
+    const user = await User.findByIdAndDelete(req.params.userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found." });
+    }
+
+    res.json({ message: "User successfully deleted." });
+  } catch (error) {
+    console.error("User deletion error:", error.message);
+    res.status(500).json({ message: "Internal server error." });
+  }
+});
+
+/**
+ * @route   POST /verify-token
+ * @desc    Verifies the validity of a JWT token
+ * @access  Private (Requires authentication)
+ */
+router.post("/verify-token", (req, res) => {
+  const token = req.cookies.token;
+
+  if (!token) {
+    return res
+      .status(400)
+      .json({ isValid: false, message: "Token is missing." });
+  }
+
+  try {
+    // Verify JWT token
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    return res.status(200).json({ isValid: true, user: decoded });
+  } catch (error) {
+    console.error("Token verification error:", error.message);
+    return res.status(401).json({ isValid: false, message: "Invalid token." });
+  }
+});
+
 module.exports = router;
