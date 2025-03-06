@@ -13,24 +13,24 @@ const Hero = () => {
           <div className="flex-1 text-center lg:text-left">
             {/* Main heading with emphasis on a key phrase */}
             <h1 className="text-3xl sm:text-4xl 2xl:text-5xl font-bold text-gray-900 leading-tight mb-6 lg:mb-12">
-              태양광 설비 전문가와 함께
+              Building the Future
               <span className="block text-blue-600 mt-2 lg:mt-6">
-                미래를 만들어갑니다.
+              with Solar Energy Experts
               </span>
             </h1>
             
             {/* Short supporting description */}
             <p className="text-lg sm:text-xl text-gray-800 font-semibold mb-8 max-w-2xl mx-auto">
-              안전하고 효율적인 태양광 설비 설치부터 유지보수까지, 전문가들이 함께합니다.
+            From safe and efficient solar installations to ongoing maintenance, our experts are with you every step of the way.
             </p>
             
             {/* Call-to-action buttons for user interaction */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <button className="px-8 py-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 text-lg font-semibold shadow-lg hover:shadow-xl">
-                상담 신청하기
+              Get a Consultation
               </button>
               <button className="px-8 py-4 bg-white text-blue-600 rounded-lg border-2 border-blue-600 hover:bg-blue-50 transition-colors duration-300 text-lg font-semibold">
-                더 알아보기
+                Learn more
               </button>
             </div>
           </div>
@@ -52,13 +52,13 @@ const Hero = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
           {[
-            { number: "1,200+", label: "설치 완료" },
-            { number: "98%", label: "고객 만족도" },
-            { number: "15년+", label: "업계 경력" },
-            { number: "24/7", label: "기술 지원" },
+            { number: "1,200+", label: "Installations Completed" },
+            { number: "98%", label: "Customer Satisfaction" },
+            { number: "15+ Years", label: "Industry Experience" },
+            { number: "24/7", label: "Technical Support" }
           ].map((stat, index) => (
             <div key={index} className="text-center">
-              <div className="text-3xl font-bold text-blue-600">
+              <div className="py-2 text-3xl font-bold text-blue-600">
                 {stat.number}
               </div>
               <div className="text-gray-900">{stat.label}</div>

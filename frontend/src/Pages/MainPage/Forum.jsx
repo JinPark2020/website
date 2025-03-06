@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Forum = () => {
+  // Dummy post data
   const dummyPosts = [
     {
       _id: 1,
@@ -14,7 +15,7 @@ const Forum = () => {
     {
       _id: 2,
       number: 2,
-      title: "두 번째 게시물",
+      title: "Second Post",
       views: 95,
       fileUrl: [],
       createdAt: "2023-01-05",
@@ -22,7 +23,7 @@ const Forum = () => {
     {
       _id: 3,
       number: 3,
-      title: "세 번째 게시물",
+      title: "Third Post",
       views: 70,
       fileUrl: ["file2", "file3"],
       createdAt: "2023-01-10",
@@ -30,7 +31,7 @@ const Forum = () => {
     {
       _id: 4,
       number: 4,
-      title: "네 번째 게시물",
+      title: "Fourth Post",
       views: 50,
       fileUrl: [],
       createdAt: "2023-01-15",
@@ -38,7 +39,7 @@ const Forum = () => {
     {
       _id: 5,
       number: 5,
-      title: "다섯 번째 게시물",
+      title: "Fifth Post",
       views: 30,
       fileUrl: ["file4"],
       createdAt: "2023-01-20",
@@ -48,12 +49,14 @@ const Forum = () => {
   return (
     <div className="bg-white">
       <div className="container mx-auto px-4 py-28 lg:py-0 max-w-6xl">
+        {/* Page title */}
         <div className="text-center mb-6">
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900">
             Board
           </h2>
         </div>
 
+        {/* "See All" button to navigate to the board page */}
         <div className="flex justify-end mb-4">
           <Link
             to="/board"
@@ -78,12 +81,15 @@ const Forum = () => {
           </Link>
         </div>
 
+        {/* Forum posts container */}
         <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+          {/* Show message if there are no posts */}
           {dummyPosts.length === 0 ? (
             <div className="p-6 text-center text-gray-500">
               No recent post.
             </div>
           ) : (
+            // Render post list
             dummyPosts.map((post) => (
               <div
                 key={post._id}
@@ -91,24 +97,28 @@ const Forum = () => {
               >
                 <div className="p-6 flex items-center justify-between">
                   <div className="flex-1">
+                    {/* Post details (number, views, files) */}
                     <div className="flex items-center gap-4 mb-2">
                       <span className="text-gray-500 text-sm">
                         No. {post.number}
                       </span>
                       <span className="text-gray-500 text-sm">
-                        views: {post.views}
+                        Views: {post.views}
                       </span>
                       {post.fileUrl.length > 0 && (
                         <span className="text-gray-500 text-sm">
-                          file: {post.fileUrl.length}
+                          Files: {post.fileUrl.length}
                         </span>
                       )}
                     </div>
+                    {/* Post title */}
                     <h3 className="text-xl font-semibold text-gray-800 hover:text-blue-600 transition-colors duration-300">
                       {post.title}
                     </h3>
+                    {/* Post creation date */}
                     <div className="mt-2 text-gray-500">{post.createdAt}</div>
                   </div>
+                  {/* Arrow icon for navigation */}
                   <div className="ml-4">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

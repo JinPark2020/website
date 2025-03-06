@@ -12,38 +12,44 @@ const Footer = () => {
 
   return (
     <footer className="bg-gray-900 text-gray-300">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <h3 className="text-xl font-bold mb-4">회사 소개</h3>
+      <div className="container mx-auto px-6 py-12">
+        {/* Grid Layout for Footer Sections */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center md:text-left">
+          
+          {/* About Us */}
+          <div className="lg:pl-6">
+            <h3 className="text-xl font-bold mb-4">About Us</h3>
             <p className="text-gray-400">
-              저희는 최고의 서비스를 제공하기 위해 노력하고 있습니다.
+              We strive to provide the best service to our customers.
             </p>
           </div>
           
-          <div>
-            <h3 className="text-xl font-bold mb-4">빠른 링크</h3>
+          {/* Quick Links */}
+          <div className="lg:pl-6">
+            <h3 className="text-xl font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li><Link to="/" onClick={scrollToTop} className="hover:text-white transition-colors">홈</Link></li>
-              <li><Link to="/about" onClick={scrollToTop} className="hover:text-white transition-colors">회사 정보</Link></li>
-              <li><Link to="/leadership" onClick={scrollToTop} className="hover:text-white transition-colors">임원 소개</Link></li>
-              <li><Link to="/board" onClick={scrollToTop} className="hover:text-white transition-colors">업무 게시판</Link></li>
-              <li><Link to="/our-services" onClick={scrollToTop} className="hover:text-white transition-colors">제공 기술</Link></li>
-              <li><Link to="/contact" onClick={scrollToTop} className="hover:text-white transition-colors">문의</Link></li>
+              <li><Link to="/" onClick={scrollToTop} className="hover:text-white transition-colors">Home</Link></li>
+              <li><Link to="/about" onClick={scrollToTop} className="hover:text-white transition-colors">About Us</Link></li>
+              <li><Link to="/info" onClick={scrollToTop} className="hover:text-white transition-colors">Executives</Link></li>
+              <li><Link to="/board" onClick={scrollToTop} className="hover:text-white transition-colors">Board</Link></li>
+              <li><Link to="/etc" onClick={scrollToTop} className="hover:text-white transition-colors">Technologies</Link></li>
+              <li><Link to="/contact" onClick={scrollToTop} className="hover:text-white transition-colors">Contact</Link></li>
             </ul>
           </div>
           
-          <div>
-            <h3 className="text-xl font-bold mb-4">연락처</h3>
+          {/* Contact Info */}
+          <div className="lg:pl-6">
+            <h3 className="text-xl font-bold mb-4">Contact</h3>
             <ul className="space-y-2 text-gray-400">
-              <li>전화: 02-1234-5678</li>
-              <li>이메일: jinpark0202@gmail.com</li>
+              <li>Phone: 02-1234-5678</li>
+              <li>Email: jinpark0202@gmail.com</li>
             </ul>
           </div>
           
-          <div>
-            <h3 className="text-xl font-bold mb-4">소셜 미디어</h3>
-            <div className="flex space-x-4">
+          {/* Social Media Links */}
+          <div className="lg:pl-6">
+            <h3 className="text-xl font-bold mb-4">Social Media</h3>
+            <div className="flex justify-center md:justify-start space-x-4">
               <a href="#" className="text-gray-400 hover:text-white transition-colors">
                 <FaFacebook size={20} />
               </a>
@@ -60,8 +66,9 @@ const Footer = () => {
           </div>
         </div>
         
+        {/* Copyright Section */}
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; 2024 Your Company. All rights reserved.</p>
+          <p>&copy; 2025 Your Company. All rights reserved.</p>
         </div>
       </div>
     </footer>

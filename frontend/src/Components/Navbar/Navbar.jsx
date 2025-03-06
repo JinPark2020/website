@@ -4,12 +4,12 @@ import { HiMenu, HiX } from "react-icons/hi";
 
 // Navigation menu items
 const menuItems = [
-  { path: "/", label: "홈" },
-  { path: "/about", label: "회사 정보" },
-  { path: "/info", label: "임원 소개" },
-  { path: "/board", label: "업무 게시판" },
-  { path: "/etc", label: "제공 기술" },
-  { path: "/contact", label: "문의하기" }
+  { path: "/", label: "Home" },
+  { path: "/about", label: "About Us" },
+  { path: "/info", label: "Executives" },
+  { path: "/board", label: "Board" },
+  { path: "/etc", label: "Technologies" },
+  { path: "/contact", label: "Contact" }
 ];
 
 // Menu item component
@@ -27,7 +27,7 @@ const MenuItem = ({ path, label, onClick }) => (
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [language, setLanguage] = useState('ko');
+  const [language, setLanguage] = useState('en');
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -36,7 +36,7 @@ const NavBar = () => {
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo or brand name */}
         <h1 className="text-xl lg:text-2xl font-bold lg:ml-12 lg:mr-8">
-          <Link to="/">Jin Park</Link>
+          <Link to="/">ABC Company</Link>
         </h1>
         
         {/* Desktop navigation menu */}
@@ -54,15 +54,15 @@ const NavBar = () => {
           onChange={(e) => setLanguage(e.target.value)}
           className="hidden lg:block px-3 py-1 ml-8 border rounded-md bg-white hover:border-blue-500 transition duration-300"
         >
-          <option value="en">English</option>
-          <option value="ko">한국어</option>
+          <option value="en">Eng</option>
+          <option value="ko">Kor</option>
         </select>
 
         {/* Mobile menu button */}
         <button
           className="lg:hidden text-2xl"
           onClick={toggleMenu}
-          aria-label="메뉴"
+          aria-label="Menu"
         >
           {isOpen ? <HiX /> : <HiMenu />}
         </button>
@@ -78,7 +78,7 @@ const NavBar = () => {
           <button
             className="text-2xl mb-8 float-right"
             onClick={toggleMenu}
-            aria-label="닫기"
+            aria-label="Close"
           >
             <HiX />
           </button>
@@ -101,7 +101,7 @@ const NavBar = () => {
             className="mt-6 w-full px-3 py-1 border rounded-md bg-white hover:border-blue-500 transition duration-300"
           >
             <option value="en">English</option>
-            <option value="ko">한국어</option>
+            <option value="ko">Korean</option>
           </select>
         </div>
       </div>
